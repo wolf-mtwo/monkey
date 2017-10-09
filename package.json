@@ -21,6 +21,7 @@
     "glob": "^7.1.0",
     "jsonwebtoken": "^7.1.9",
     "log4js": "^0.6.38",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "superagent": "^3.6.3"
   }
 }
