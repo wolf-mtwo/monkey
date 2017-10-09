@@ -15,5 +15,15 @@ module.exports = (app) => {
       next(err);
     });
   });
+
+  router.get('/oportunidades', (req, res, next) => {
+    stock.findOpportunities()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  });
   app.use('/', router);
 };
