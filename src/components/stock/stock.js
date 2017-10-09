@@ -1,16 +1,17 @@
+import request from 'superagent';
 
+export class Stock {
 
-export class System {
-
-  constructor() {
-
+  getInformation() {
+    const query = {
+      function: 'TIME_SERIES_INTRADAY',
+      symbol: 'MSFT',
+      apikey: 'Q71DBI2RESC3LMBM',
+      interval: '60min'
+    };
+    return request
+    .get('https://www.alphavantage.co/query')
+    .query(query)
+    .send();
   }
 }
-request
-  .post('/api/pet')
-  .send({ name: 'Manny', species: 'cat' }) // sends a JSON post body
-  .set('X-API-Key', 'foobar')
-  .set('accept', 'json')
-  .end((err, res) => {
-    // Calling the end function will send the request
-  });
