@@ -1,4 +1,5 @@
 import request from 'superagent';
+import _ from 'lodash';
 import config from './config';
 import symbol from './symbol';
 
@@ -7,7 +8,7 @@ export class Stock {
   getInformation() {
     const query = {
       function: 'TIME_SERIES_INTRADAY',
-      symbol: 'MSFT',
+      symbol: 'AMZN',
       apikey: 'Q71DBI2RESC3LMBM',
       interval: '60min'
     };
@@ -22,18 +23,32 @@ export class Stock {
       return this.findBySymbol(item)
       .then((data) => {
         return data.body;
+      })
+      .catch((err) => {
+          console.log(err.message);
       });
     }))
-    .then((list) => {
-      return list.map((item) => {
-        const title = item['Meta Data'];
-        const generator = item['Technical Analysis: RSI'];
-        const data = generator[Object.keys(generator)[0]];
-        return {
-          symbol: title['1: Symbol'],
-          rsi: data.RSI
-        };
+    .then((items) => {
+      return items.map((item) => {
+        try {
+          const title = item['Meta Data'];
+          const generator = item['Technical Analysis: RSI'];
+          const data = generator[Object.keys(generator)[0]];
+          return {
+            symbol: title['1: Symbol'],
+            rsi: data.RSI
+          };
+        } catch (e) {
+          return {
+            symbol: 'no funca',
+            rsi: 50,
+            item
+          }
+        }
       });
+    })
+    .then((items) => {
+        return _.sortBy(items, ['rsi']);
     });
   }
 
@@ -48,7 +63,7 @@ export class Stock {
     };
     return request
     .get('https://www.alphavantage.co/query')
-    .timeout(60000)
+    .timeout({response: 30000})
     .query(query)
     .send();
   }
