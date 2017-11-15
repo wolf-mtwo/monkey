@@ -6,17 +6,53 @@
 npm install
 ```
 
-## Running your application with Gulp
+#usage
 
-We have wrapped Gulp tasks regardless of the build tool running the project is transparent to you.
-To use Gulp directly, you need to first install it globally:
+GET **<BASE_URL>/symbol/<SYMBOL>/premarket** _OBJECT_
+
+Retrieves premarket information
+
+- **BASE_URL** = server base path
+- **SYMBOL** = market stock symbol
+
+_Examples:_
+```
+http://localhost:3000/symbol/jd/premarket
+http://localhost:3000/symbol/tsla/premarket
+http://localhost:3000/symbol/amd/premarket
+```
+_Note:_
+Use valid symbols
+
+
+GET **<BASE_URL>/oportunidades** _ARRAY_
+
+Retrieves current RSI of a predefined list of stock
+
+_Examples:_
+```
+[
+    {
+        "symbol": "GE",
+        "rsi": "28.1159"
+    },
+    {
+        "symbol": "AAPL",
+        "rsi": "28.2566"
+    },
+    {
+        "symbol": "AA",
+        "rsi": "33.8401"
+    }
+]
+```
+
+
+
+## Running your application with Gulp
 
 It's time to use Gulp tasks:
 - *$ gulp serve* to start server on your source files with live reload
-- *$ gulp serve:dist* to start server on your optimized application without live reload
-
-## Contributing
-We welcome pull requests from the community! Just be sure to read the [contributing]() doc to get started.
 
 ## License
 [The MIT License](LICENSE.md)
