@@ -6,11 +6,12 @@
 npm install
 ```
 
-#usage
+# usage
 
-GET **<BASE_URL>/symbol/<SYMBOL>/premarket** _OBJECT_
+## Retrieves premarket information
 
-Retrieves premarket information
+GET **<BASE_URL>/symbol/:SYMBOL/premarket** _OBJECT_
+
 
 - **BASE_URL** = server base path
 - **SYMBOL** = market stock symbol
@@ -21,15 +22,26 @@ http://localhost:3000/symbol/jd/premarket
 http://localhost:3000/symbol/tsla/premarket
 http://localhost:3000/symbol/amd/premarket
 ```
+
+_Response:_
+
+```
+{
+    "name": "Tesla, Inc. Pre-Market Trading",
+    "sale": "$314.57",
+    "net": "-0.83",
+    "pct": "-0.83"
+}
+```
+
 _Note:_
 Use valid symbols
 
+## Retrieves current RSI of a predefined list of stock
 
 GET **<BASE_URL>/oportunidades** _ARRAY_
 
-Retrieves current RSI of a predefined list of stock
-
-_Examples:_
+_Response:_
 ```
 [
     {
