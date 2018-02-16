@@ -6,7 +6,7 @@ export class Premarket {
   get(symbol) {
     return this.loadBulk(symbol)
     .then((res) => {
-        return this.collector(res.text)
+      return this.collector(res.text);
     });
   }
 
@@ -17,26 +17,22 @@ export class Premarket {
   }
 
   collector(html) {
-      const $ = cheerio.load(html)
-      const container = $('.section .item .table-table');
-      const values = {
-        name: $(container).find($('.table-cell h1')).text(),
-        sale: $(container).find($('.last-sale')).text(),
-        net: '0',
-        pct: '0'
-      };
-      if ($(container).find($('.green-arrow')).length) {
-          values.net = '+' + $(container).find($('.net-change')).text();
-          values.pct = '+' + $(container).find($('.pct-change')).text();
-      }
-      if ($(container).find($('.red-arrow')).length) {
-          values.net = '-' + $(container).find($('.net-change')).text();
-          values.pct = '-' + $(container).find($('.pct-change')).text();
-      }
-      return values;
-  }
-
-  // TODO
-  parser(html) {
+    const $ = cheerio.load(html);
+    const container = $('.section .item .table-table');
+    const values = {
+      name: $(container).find($('.table-cell h1')).text(),
+      sale: $(container).find($('.last-sale')).text(),
+      net: '0',
+      pct: '0'
+    };
+    if ($(container).find($('.green-arrow')).length) {
+      values.net = '+' + $(container).find($('.net-change')).text();
+      values.pct = '+' + $(container).find($('.pct-change')).text();
+    }
+    if ($(container).find($('.red-arrow')).length) {
+      values.net = '-' + $(container).find($('.net-change')).text();
+      values.pct = '-' + $(container).find($('.pct-change')).text();
+    }
+    return values;
   }
 }

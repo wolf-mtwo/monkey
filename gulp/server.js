@@ -58,3 +58,7 @@ gulp.task('serve', ['serve:dist', 'copy:assets'], () => {
     env: { 'NODE_ENV': 'development' }
   });
 });
+
+gulp.task('dist', ['serve:dist', 'copy:assets'], () => {
+  console.log('DONE!');
+});

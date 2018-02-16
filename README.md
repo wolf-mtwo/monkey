@@ -41,6 +41,11 @@ Use valid symbols
 
 GET **<BASE_URL>/oportunidades** _ARRAY_
 
+**NOTE:**
+**please change your apikey on //src/stock/config.json**
+**[Claim your API Key](https://www.alphavantage.co/support/#api-key)**
+**please change your list of stoks on //src/stock/symbol.json**
+
 _Response:_
 ```
 [
