@@ -35,7 +35,7 @@ _Response:_
 }
 ```
 
-## Yahoo Statistics Parser retrieves stocks fundamentals
+## Yahoo statistics parser retrieves stocks fundamentals
 
 GET **<BASE_URL>/symbol/:SYMBOL/fundamental** _ARRAY_
 
