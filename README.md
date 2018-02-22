@@ -4,6 +4,7 @@
 
 ```
 npm install
+gulp serve
 ```
 
 # usage
@@ -32,6 +33,40 @@ _Response:_
     "net": "-0.83",
     "pct": "-0.83"
 }
+```
+
+## Yahoo Statistics Parser retrieves stocks fundamentals
+
+GET **<BASE_URL>/symbol/:SYMBOL/fundamental** _ARRAY_
+
+- **BASE_URL** = server base path
+- **SYMBOL** = market stock symbol
+
+_Examples:_
+```
+http://localhost:3000/symbol/jd/fundamental
+http://localhost:3000/symbol/tsla/fundamental
+http://localhost:3000/symbol/amd/fundamental
+```
+
+_Response:_
+
+```
+[
+    {
+        "key": "Market Cap (intraday) 5",
+        "value": "483.66B"
+    },
+    {
+        "key": "Enterprise Value 3",
+        "value": "467.88B"
+    },
+    {
+        "key": "Trailing P/E ",
+        "value": "46.37"
+    }
+    // data...
+]
 ```
 
 _Note:_
@@ -63,8 +98,6 @@ _Response:_
     }
 ]
 ```
-
-
 
 ## Running your application with Gulp
 

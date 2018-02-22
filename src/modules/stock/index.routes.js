@@ -1,9 +1,11 @@
 import express from 'express';
 import { Stock } from '../../components/stock';
 import { Premarket } from '../../components/premarket';
+import { Fundamental } from '../../components/fundamental';
 
 const stock = new Stock();
 const premarket = new Premarket();
+const fundamental = new Fundamental();
 
 /* GET home page. */
 module.exports = (app) => {
@@ -34,6 +36,20 @@ module.exports = (app) => {
     }
     const symbol = req.params.symbol;
     premarket.get(symbol)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  });
+
+  router.get('/symbol/:symbol/fundamental', (req, res, next) => {
+    if (!req.params) {
+      throw new Error('symbol is undefined');
+    }
+    const symbol = req.params.symbol;
+    fundamental.get(symbol)
     .then((data) => {
       res.json(data);
     })
