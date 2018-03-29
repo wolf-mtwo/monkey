@@ -41,7 +41,7 @@ export class Monitor {
     mark = parseFloat(mark);
     //ent 100
     //mark x
-    let porcent = ((mark * 100) / ent).toFixed(2);
+    let porcent = ((mark * 100) / ent);
     let url = this.get_symbol(symbol);
     let info = {
       symbol,
@@ -62,8 +62,8 @@ export class Monitor {
   show_report() {
     this.show_header();
     this.data.sort((a, b) => {
-      if (a.porcent >= b.porcent) {
-        return 1;
+      if (b.porcent > a.porcent) {
+        return b.porcent;
       }
     });
     this.data.forEach((info) => {
@@ -76,7 +76,7 @@ export class Monitor {
   }
 
   print(info) {
-    console.log(`${this.PadLeft(info.symbol, 6)} ${this.PadLeft(info.ent, 10)} ${this.PadLeft(info.mark, 10)} ${this.PadLeft(info.porcent, 10)}   ${info.url}`);
+    console.log(`${this.PadLeft(info.symbol, 6)} ${this.PadLeft(info.ent, 10)} ${this.PadLeft(info.mark, 10)} ${this.PadLeft(info.porcent.toFixed(2), 10)}   ${info.url}`);
   }
 
   loadBulk(symbol) {
